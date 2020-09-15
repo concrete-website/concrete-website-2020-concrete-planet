@@ -13,8 +13,8 @@ import Privateorders from './components/Privateorders';
 import Update from './components/Update';
 import orderforeorker from './components/orderforeorker';
 import WorkerUpdatae from './components/WorkerUpdatae';
-// import io from 'socket.io-client'
-import socket from './components/socket';
+import io from 'socket.io-client'
+// import {socket} from './components/socket';
 import Privatup from './components/Privatup';
 import Privateforworker from './components/Privateforworker';
 import Privateupdw from './components/Privateupdw';
@@ -23,6 +23,14 @@ var ignore= true
 // const socket = io.connect('http://localhost:3000/')
 function App() {
   
+
+  // const socket = io('https://concrete-react.herokuapp.com/', {
+  //   query: {
+  //     token: localStorage.getItem('token'),
+  //   },
+  // });
+
+
   const [rendercomponent, setrendercomponent] = useState(false)
  
   
@@ -68,36 +76,36 @@ function notifyMe() {
   
   // notifyMe() 
   ///////
- 
+ ///*************************************** */
 
-useEffect(() => {
-
- 
-
-  socket.on('message', ({ name, data }) => {
+// useEffect(() => {
 
  
-    if(ignore){ 
-      if(name !='home'){
+
+//   socket.on('message', ({ name, data }) => {
+
+ 
+//     if(ignore){ 
+//       if(name !='home'){
     
-      notifyMe()}}
-      // setname1(name)
-       setTimeout(() => {
-    ignore= false
-  // console.log('second 500');
-  }, 500);
+//       notifyMe()}}
+//       // setname1(name)
+//        setTimeout(() => {
+//     ignore= false
+//   // console.log('second 500');
+//   }, 500);
 
 
 
-      setTimeout(() => {
-        ignore= true
-        console.log('second 4000');
-      },10000);
-    })
-// console.log('effect');
-  },[])
+//       setTimeout(() => {
+//         ignore= true
+//         console.log('second 4000');
+//       },10000);
+//     })
+// // console.log('effect');
+//   },[])
       
-
+///*************** */
 
 
 

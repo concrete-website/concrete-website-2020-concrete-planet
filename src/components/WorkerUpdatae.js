@@ -1,17 +1,28 @@
 
 
 
-    import React, { useState, useEffect } from 'react'
+    import React, { useState, useEffect, useContext } from 'react'
 import Axios from 'axios'
 import { withRouter } from 'react-router-dom'
-import socket from './socket'
+// import socket from './socket'
 import Heder from './Heder'
-
+import io from 'socket.io-client'
+import { ContextStore } from './Store'
 
  // props.match.params.id
 
-
+ // import { ContextStore, } from './Store'
+ // val.setdata(val.data+1)
  function WorkerUpdatae({match}) {
+     
+     const val = useContext(ContextStore)
+    
+// const socket = io('https://concrete-react.herokuapp.com/', {
+//     query: {
+//       token: localStorage.getItem('token'),
+//     },
+//   });
+
     const[orderName,setorderName]=useState('')
     const[cupAmount,setcupAmount]=useState('')
 const [loading, setLoading] = useState(true)
@@ -21,15 +32,15 @@ const [statusbtn1, setStatusbtn1] = useState('green')
 const [statusbtn2, setStatusbtn2] = useState('blue')
 const [statusbtn3, setStatusbtn3] = useState('blue')
 
-function emitms() {
-    let token=localStorage.getItem('token');
-    //*********************************************** */
-    socket.emit('message', { name:'anas',message:token })
-    // console.log('em');
- 
-        // setrendercomponent(!rendercomponent)
-        //************************************************* */
-    }
+// function emitms() {
+//     let token=localStorage.getItem('token');
+//     //*********************************************** */
+//     socket.emit('message', { name:'anas',message:token })
+//     // console.log('em');
+
+//         // setrendercomponent(!rendercomponent)
+//         //************************************************* */
+//     }
 
 
 
@@ -192,15 +203,33 @@ switch (e) {
                   {/* {editOrder()} */}
                   <br/>
                   <br/>
-                  <button style={{backgroundColor:statusbtn1}} className='btn btn-primary'  onClick={() => {statusbtn('b1')}}>בהמתנה/في الانتظار</button>
+                  <button style={{backgroundColor:statusbtn1}} className='btn btn-primary'  onClick={() => {statusbtn('b1')
+                 setTimeout(() => {
+                     val.emitms1() 
+                     
+                    },1000);
+                    statusbtn('b1')
+              
+   
+                }}>בהמתנה/في الانتظار</button>
                   <br/>
                   <br/>
-                  <button style={{backgroundColor:statusbtn2}} className='btn btn-primary'  onClick={() => {statusbtn('b2')}}>בהכנה/في التحضير</button>
+                  <button style={{backgroundColor:statusbtn2}} className='btn btn-primary'  onClick={() => {
+                      setTimeout(() => {
+                          val.emitms1() 
+                          
+                        },1000);
+                        statusbtn('b2')
+                    }}>בהכנה/في التحضير</button>
                   <br/>
                   <br/>
                   <button style={{backgroundColor:statusbtn3}} className='btn btn-primary'  onClick={() => {
-                      emitms()
-                      statusbtn('b3')
+                      
+                      setTimeout(() => {
+                          val.emitms1() 
+                          
+                        },1000);
+                        statusbtn('b3')
 
                       }}>ההזמנה מוכנה/الطلبيه جاهزه</button>
               </div>

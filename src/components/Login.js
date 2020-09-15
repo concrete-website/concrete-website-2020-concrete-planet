@@ -2,9 +2,17 @@ import React, { useState, useContext, useCallback, useEffect } from 'react'
 import Axios from 'axios'
 import { ContextStore } from './Store'
 import { withRouter } from 'react-router-dom'
-import socket from './socket'
-
+// import {socket}from './socket'
+// import io from 'socket.io-client'
  function Login({history,match}) {
+
+    
+// const socket = io('https://concrete-react.herokuapp.com/', {
+//     query: {
+//       token: localStorage.getItem('token'),
+//     },
+//   });
+
     const[userName,setuserName]=useState('')
     const[password,setpassword]=useState('')
 const [user, setuser] = useState('')
@@ -17,15 +25,15 @@ const [user, setuser] = useState('')
 
 
         
-function emitms() {
-    // let token=localStorage.getItem('token');
-    //*********************************************** */
-    socket.emit('message', { name:'home',message:'dd' })
-    // console.log('em');
+// function emitms() {
+//     // let token=localStorage.getItem('token');
+//     //*********************************************** */
+//     socket.emit('message', { name:'home',message:'dd' })
+//     // console.log('em');
  
-        // setrendercomponent(!rendercomponent)
-        //************************************************* */
-    }
+//         // setrendercomponent(!rendercomponent)
+//         //************************************************* */
+//     }
 
 // console.log(match.path);
 useEffect(() => {

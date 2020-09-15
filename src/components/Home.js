@@ -4,16 +4,25 @@ import { Nav, NavDropdown, Navbar, Form, FormControl, Button, Card } from 'react
 import { ContextStore } from './Store'
 import Axios from 'axios'
 import { ExportCSV } from './ExportCsv'
-import { Link } from 'react-router-dom'
-import io from 'socket.io-client'
-import socket from './socket'
+import { Link, withRouter } from 'react-router-dom'
+// import io from 'socket.io-client'
+// import {socket} from './socket'
+
 
 let admin=false
 // import { ContextStore, } from './Store'
 
 // val.setdata(val.data+1)
 let datat;
-export default function Home() {
+function Home({history}) {
+
+    
+// const socket = io('https://concrete-react.herokuapp.com/', {
+//     query: {
+//       token: localStorage.getItem('token'),
+//     },
+//   });
+
     const val = useContext(ContextStore)
     const[orderName,setorderName]=useState('')
     const [orders, setorders] = useState('')
@@ -65,41 +74,51 @@ export default function Home() {
 
 }
 
-useEffect(() => {
+// useEffect(() => {
+//     function emitms1() {
+//         let token=localStorage.getItem('token');
+//         //*********************************************** */
+//         socket.emit('message', { name:'home',message:token })
+//         // console.log('em');
+//             // setrendercomponent(!rendercomponent)
+//             //************************************************* */
+//         }
 
-    function emitms1() {
-        let token=localStorage.getItem('token');
-        //*********************************************** */
-        socket.emit('message', { name:'home',message:token })
-        // console.log('em');
-            // setrendercomponent(!rendercomponent)
-            //************************************************* */
-        }
-        emitms1()
-socket.on('message', ({ name, data }) => {
-    // setname1(name)
-    // console.log(name);
-    //   let ignore=true
-    // console.log(data );
-    setorders(data)
-   
- 
-})
+//         setTimeout(() => {
+            
+//             emitms1()
+//         }, 1500);
+        
+        
+        
+//     })
+//             socket.on('message', ({ name, data }) => {
+//                 // setname1('on')
+//                 console.log('on');
+//                 //   let ignore=true
+//                 // console.log(data );
+//                 // setTimeout(() => {
+                        
+//                     // setorders(data)
+//                     // emitms1()
+//                 // }, 3000);
+// console.log('usee effcet worked');
 
-
-},[])
+// })
+// })
+console.log('home rendered');
 const DisplayAndHide=()=>{
 if(flag) return( <div>My Component</div>)
 }
 ////
-function emitms() {
-    let token=localStorage.getItem('token');
-    //*********************************************** */
-    socket.emit('message', { name:'anas',message:token })
-    // console.log('em');
-        // setrendercomponent(!rendercomponent)
-        //************************************************* */
-    }
+// function emitms() {
+//     let token=localStorage.getItem('token');
+//     //*********************************************** */
+//     socket.emit('message', { name:'anas',message:token })
+//     // console.log('em');
+//         // setrendercomponent(!rendercomponent)
+//         //************************************************* */
+//     }
 // delete order
 const DeleteById=(id)=>{
 
@@ -116,7 +135,11 @@ const DeleteById=(id)=>{
 Axios.delete('https://concrete-react.herokuapp.com/users/delid/'+id,config)
 .then((res)=>{
     // console.log(res.data);
-    emitms()
+    // emitms()
+    setTimeout(() => {
+        
+        val.emitms1()
+    }, 1000);
 }).catch((err)=>{
     console.log(err);
 })
@@ -147,11 +170,11 @@ const convertDate=(date,statusbtn)=>{
 
     
         //   if(orders.data)  {
-            if(orders)  {
+            if(val.orders)  {
     try {
        
     //  return orders.data.map((item,i)=>{
-        return orders.map((item,i)=>{
+        return val.orders.map((item,i)=>{
             return(
                 
               <div  key={i}style={{backgroundColor:'rgb(190, 185, 185)',marginBottom:'20px',marginTop:'30px' }}>
@@ -172,7 +195,9 @@ const convertDate=(date,statusbtn)=>{
             <h3 style={{borderBottom:'1px solid gray',paddingBottom:'10px',marginBottom:'10px'}}> {convertDate(item.dateFinished,item.finishOrder)} </h3>
 {(item.finishOrder=='b2')?<h3 style={{backgroundColor:'#fd7e14'}} >בהכנה</h3>:''}
 
-              {admin?<button className='btn btn-danger m-1' onClick={() => {DeleteById(item._id)}}>מחק הזמנה</button>:''}
+              {admin?<button className='btn btn-danger m-1' onClick={() => {
+                  DeleteById(item._id)
+                  }}>מחק הזמנה</button>:''}
              { admin? <Link className='btn btn-primary m-1' to={'/upd/'+item._id}> تعديل/עריכה </Link>:''}
              { <Link className='btn btn-primary m-1' to={'/updw/'+item._id}> حاله الطلبيه/המצב </Link>}
              {/* <Update/> */}
@@ -224,7 +249,7 @@ const editOrder=()=>{
     let iduser=localStorage.getItem('id'); 
     if(iduser=='5f54f79720960f4618748bbe'){
         // getAll()
-    return<ExportCSV  csvData={orders} fileName={'newfile'} />}}
+    return<ExportCSV  csvData={val.orders} fileName={'newfile'} />}}
 
 
 
@@ -245,8 +270,9 @@ const editOrder=()=>{
     <Nav  style={{direction:'rtl'}} className="ml-auto"  >
     {/* style={{direction:'rtl'}} */}
     {/*  */}
+    {/* as={Link} to='/' href="b" */}
   < Nav.Link style={{textAlign:'right'}} onClick={() => { window.location.reload(false)}}>"Refresh" اظهار الطابيات/הצג הזמנות</Nav.Link >
-      <Nav.Link style={{textAlign:'right'}} as={Link} to='/' href="b" >עמוד הבית ההזמנות</Nav.Link> 
+      <Nav.Link style={{textAlign:'right'}} onClick={ ()=>{history.push('/')}} >עמוד הבית ההזמנות</Nav.Link> 
      {admin? <Nav.Link style={{textAlign:'right'}}  as={Link} to='/ord' href="b" >צור הזמנה חדשה</Nav.Link>:''}
     <Nav.Link style={{textAlign:'right'}} onClick={() => { getAll()}} as={Link} to='/'  href="b" >كل الطلبيات/כל ההזמנות</Nav.Link>
     <NavDropdown onClick={()=>{getAll()}} style={{textAlign:'right'}} title="Download Excel file" id="collasible-nav-dropdown">
@@ -265,6 +291,7 @@ const editOrder=()=>{
 <div className='container '>
 
         { renderdata()}
+        {/* <button className='btn btn-primary' onClick={() => {emitms()}}>imaet</button> */}
         <br/>
        
             
@@ -281,4 +308,4 @@ const editOrder=()=>{
                 </div>
                 )
             }
-            
+            export default  withRouter(Home)

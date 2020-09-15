@@ -1,14 +1,26 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, useContext } from 'react'
 import Axios from 'axios'
 import { withRouter } from 'react-router-dom'
-import socket from './socket'
+// import socket from './socket'
 import Heder from './Heder'
-// import io from 'socket.io-client'
+import io from 'socket.io-client'
+import { ContextStore } from './Store'
 // const socket = io.connect('http://localhost:3000/')
 // props.match.params.id
 
+ // import { ContextStore, } from './Store'
+ // val.setdata(val.data+1)
+ 
+ function Uodate({match}) {
+     
+     const val = useContext(ContextStore)
+    
+// const socket = io('https://concrete-react.herokuapp.com/', {
+//     query: {
+//       token: localStorage.getItem('token'),
+//     },
+//   });
 
-function Uodate({match}) {
     const[orderName,setorderName]=useState('')
     const [orderDirection, setorderDirection] = useState('')
     const [orderType, setorderType] = useState('')
@@ -18,7 +30,7 @@ const [createdOrder, setcreatedOrder] = useState(false)
 function emitms() {
     let token=localStorage.getItem('token');
     //*********************************************** */
-    socket.emit('message', { name:'anas',message:token })
+    // socket.emit('message', { name:'anas',message:token })
     // console.log('em');
  
         // setrendercomponent(!rendercomponent)
@@ -60,7 +72,12 @@ Axios.post('https://concrete-react.herokuapp.com/users/upd/'+match.params.id,ord
 .then((res)=>{
     // console.log(res);
     setcreatedOrder('ההזמנה שונתה בהצלחה')
-    emitms() })
+    // setTimeout(() => {
+                          
+    //     emitms()
+    // },1500);
+    val.emitms1()
+     })
 .catch((err)=>{console.log(err);
     setcreatedOrder(' !!ההזמנה לא שונתה ')
 })
@@ -89,7 +106,7 @@ Axios.post('https://concrete-react.herokuapp.com/users/upd/'+match.params.id,ord
                     <input onChange={(e)=>{}} className='form-control' type='text' name='orderType' placeholder='order type' defaultValue={orderType} ></input>
 <h3 style={{marginTop:'30px'}}>كوب/קוב</h3>
                   <input onChange={(e)=>{setcupAmount(e.target.value)
-                emitms()}} className='form-control' type='text' name='cupAmount' placeholder='cup Amount' defaultValue={cupAmount} ></input>
+               }} className='form-control' type='text' name='cupAmount' placeholder='cup Amount' defaultValue={cupAmount} ></input>
                   {editOrder()}
             {/* <button className='btn btn-primary' type='submit' onClick={() => {}}>תיקון הזמנה</button> */}
          </form>

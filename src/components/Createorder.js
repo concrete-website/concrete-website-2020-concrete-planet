@@ -1,21 +1,35 @@
-import React, { useState } from 'react'
+import React, { useState, useContext } from 'react'
 import Axios from 'axios'
-import socket from './socket'
+// import socket from './socket'
 import Heder from './Heder'
+import { ContextStore } from './Store'
+// import io from 'socket.io-client'
+// import io from 'socket.io-client'
 // https://concrete-react.herokuapp.com/
 export default function Createorder() {
+
+    // const socket = io('https://concrete-react.herokuapp.com/', {
+    //     query: {
+    //       token: localStorage.getItem('token'),
+    //     },
+    //   });
+    
+ 
+         const val = useContext(ContextStore)
+         
+   
     const[orderName,setorderName]=useState('')
     const[cupAmount,setcupAmount]=useState('')
     const [createdOrder, setcreatedOrder] = useState(false)
     const [loading, setLoading] = useState(false)
-    function emitms1() {
-        let token=localStorage.getItem('token');
-        //*********************************************** */
-        socket.emit('message', { name:'anas',message:token })
-        // console.log('em');
-            // setrendercomponent(!rendercomponent)
-            //************************************************* */
-        }
+    // function emitms1() {
+    //     let token=localStorage.getItem('token');
+    //     //*********************************************** */
+    //     socket.emit('message', { name:'anas',message:token })
+    //     // console.log('em');
+    //         // setrendercomponent(!rendercomponent)
+    //         //************************************************* */
+    //     }
         
 
 
@@ -42,7 +56,11 @@ Axios.post('https://concrete-react.herokuapp.com/users/add',order,config)
     setcreatedOrder('הזמנה נוספה בהצלחה')
     setLoading(false)
     // console.log(res);
-    emitms1()})
+    // setTimeout(() => {
+        val.emitms1()                  
+    //    
+    // },1500);
+    })
 .catch((err)=>{
     setcreatedOrder('!!הזמנה לא נוספה')
     setLoading(false)
