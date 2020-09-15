@@ -1,6 +1,6 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "9fbd245239df80d137c56a1e886dcfa1",
+    "revision": "7a0de5e792522df157b52a8028bec3b9",
     "url": "/concrete-website-2020-concrete-planet/index.html"
   },
   {
@@ -8,7 +8,7 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/concrete-website-2020-concrete-planet/static/css/2.8aa5a7f8.chunk.css"
   },
   {
-    "revision": "b03859a8fd9d2d6d43d8",
+    "revision": "4012b0d2eb4098e3b85e",
     "url": "/concrete-website-2020-concrete-planet/static/css/main.5058eb7f.chunk.css"
   },
   {
@@ -20,8 +20,8 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/concrete-website-2020-concrete-planet/static/js/2.4c4801f5.chunk.js.LICENSE.txt"
   },
   {
-    "revision": "b03859a8fd9d2d6d43d8",
-    "url": "/concrete-website-2020-concrete-planet/static/js/main.7b8a8899.chunk.js"
+    "revision": "4012b0d2eb4098e3b85e",
+    "url": "/concrete-website-2020-concrete-planet/static/js/main.827c06e1.chunk.js"
   },
   {
     "revision": "be65966078f7bdcf36e5",

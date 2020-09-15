@@ -14,7 +14,7 @@
 importScripts("https://storage.googleapis.com/workbox-cdn/releases/4.3.1/workbox-sw.js");
 
 importScripts(
-  "/concrete-website-2020-concrete-planet/precache-manifest.13b122c36561bb022bfa8a855a7b6598.js"
+  "/concrete-website-2020-concrete-planet/precache-manifest.d0b50e310ca8214bc6aad408c94ff0dc.js"
 );
 
 self.addEventListener('message', (event) => {
