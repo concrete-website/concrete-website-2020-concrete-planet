@@ -9,6 +9,7 @@ const [data, setdata] = useState(localStorage.getItem('token'))
 const [sok, setsok] = useState(false)
 const [testdata, setTestdata] = useState('')
 const ENDPOINT='https://concrete-react.herokuapp.com/'
+// const ENDPOINT='http://localhost:5000/'
 useEffect(() => {
    
  
@@ -19,14 +20,27 @@ useEffect(() => {
       });
       emitms1()
 console.log('first socekt');
-    }, [ENDPOINT])
+    }, [])
+
+
+    useEffect(() => {
+  
+        socket.on('connect', () => {
+            // setTestdata(data)
+      console.log('connected');
+   
+          })
+   
+        }, [])
 
 useEffect(() => {
   
     socket.on('message', ({ name, data }) => {
+        console.log(name);
         setTestdata(data)
   console.log('on store');
-  alert('تم تغيير شيء')
+  if(name!='anas'){alert('تم تغيير شيء')}
+//   
       })
 console.log('second effect');
     }, [])

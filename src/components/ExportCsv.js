@@ -65,7 +65,7 @@ setTimeout(() => {
             
              csvData.map((item,i)=>{
                  let sumi=i+1
-                  data.push({'שם ההזמנה':item.orderName,'סוג ההזמנה':item.orderType,'כתובת':item.orderDirection,'קוב':item.cupAmount, 'יצירת ההזמנה':convertDatecreate(item.createdAt),'סיום ההזמנה':convertDate(item.dateFinished,item.finishOrder),'מספר ההזמנה':sumi})})
+                  data.push({'שם ההזמנה':item.orderName,'סוג ההזמנה':item.orderType,'כתובת':item.orderDirection,'קוב':item.cupAmount, 'יצירת ההזמנה':convertDatecreate(item.createdAt),'סיום ההזמנה':convertDate(item.dateFinished,item.finishOrder),ID:item._id,'מספר ההזמנה':sumi})})
             //  console.log(data);
              
             } catch (error) {

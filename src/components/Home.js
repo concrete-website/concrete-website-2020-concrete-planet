@@ -107,9 +107,9 @@ function Home({history}) {
 // })
 // })
 console.log('home rendered');
-const DisplayAndHide=()=>{
-if(flag) return( <div>My Component</div>)
-}
+// const DisplayAndHide=()=>{
+// if(flag) return( <div>My Component</div>)
+// }
 ////
 // function emitms() {
 //     let token=localStorage.getItem('token');
@@ -166,6 +166,11 @@ const convertDate=(date,statusbtn)=>{
    if(!(statusbtn=='b3')){dateandtime='לא מוכן/غير جاهز'}
     return dateandtime
     } 
+
+    const subid=(e)=>{
+let id=e.substring(20)
+return id
+    }
     const renderdata=()=>{
 
     
@@ -178,7 +183,8 @@ const convertDate=(date,statusbtn)=>{
             return(
                 
               <div  key={i}style={{backgroundColor:'rgb(190, 185, 185)',marginBottom:'20px',marginTop:'30px' }}>
-                  <h1>{i+1} :הזמנה</h1>
+                  <h6>{i+1} :הזמנה</h6>
+            <h4>ID: {subid(item._id)}</h4>
                   <h3>اسم الطلبيه/שם ההזמנה</h3>
                   <h4 style={{borderBottom:'1px solid gray'}}>{item.orderName}</h4>
 {/* #f8f9fa */}
@@ -260,7 +266,7 @@ const editOrder=()=>{
     
 
 <Navbar   collapseOnSelect expand='md' bg="dark" variant="dark">
-<button className='btn btn-primary' onClick={() => {
+<button className='btn btn-primary m-1' onClick={() => {
             localStorage.removeItem('token')
             val.setdata('')}}>להתנתק</button>
 
