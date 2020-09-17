@@ -59,8 +59,8 @@ function Home({history}) {
             
              
                 // setorders(response.data)
-               setorders(response.data)
-            
+            //    setorders(response.data)
+               val.setorders(response.data)
         // console.log(orders);
     }).catch((err)=>{
         // JSON.stringify(err)
@@ -280,8 +280,10 @@ const editOrder=()=>{
   < Nav.Link style={{textAlign:'right'}} onClick={() => { window.location.reload(false)}}>"Refresh" اظهار الطابيات/הצג הזמנות</Nav.Link >
       <Nav.Link style={{textAlign:'right'}} onClick={ ()=>{history.push('/')}} >עמוד הבית ההזמנות</Nav.Link> 
      {admin? <Nav.Link style={{textAlign:'right'}}  as={Link} to='/ord' href="b" >צור הזמנה חדשה</Nav.Link>:''}
+     {admin? <Nav.Link style={{textAlign:'right'}}  as={Link} to='/clients' href="b" >חשבון הלקוחות</Nav.Link>:''}
+     {/* getAll() */}
     <Nav.Link style={{textAlign:'right'}} onClick={() => { getAll()}} as={Link} to='/'  href="b" >كل الطلبيات/כל ההזמנות</Nav.Link>
-    <NavDropdown onClick={()=>{getAll()}} style={{textAlign:'right'}} title="Download Excel file" id="collasible-nav-dropdown">
+    <NavDropdown onClick={()=>{}} style={{textAlign:'right'}} title="Download Excel file" id="collasible-nav-dropdown">
         {/* <NavDropdown.Item style={{textAlign:'right'}} href="#action/3.1">Action</NavDropdown.Item>        */}
          <div style={{textAlign:'right'}}>{editOrder()}</div>  
         <NavDropdown.Divider />

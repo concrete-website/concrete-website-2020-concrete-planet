@@ -19,6 +19,8 @@ import Privatup from './components/Privatup';
 import Privateforworker from './components/Privateforworker';
 import Privateupdw from './components/Privateupdw';
 import Heder from './components/Heder';
+import Allclients from './components/Allclients';
+import PrivateCliant from './components/PrivateCliant';
 var ignore= true
 // const socket = io.connect('http://localhost:3000/')
 function App() {
@@ -135,7 +137,7 @@ localStorage.getItem('myData'); */}
           <Privateupdw exact path='/updw/:id' component={WorkerUpdatae} />
           <Privateforworker exact path='/worker' component={orderforeorker} />
           {/* <Route exact path='/ord'  component={()=> {return <Createorder/>}} /> */}
-       
+       <PrivateCliant exact path='/clients' component={Allclients}/>
           {/* <Route exact path="/signup" component={SignUp} /> */}
         </div>
         {/* {console.log('app rendered')} */}

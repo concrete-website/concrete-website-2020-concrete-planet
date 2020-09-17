@@ -59,7 +59,7 @@ console.log('second effect');
         }
 console.log('rendered store');
     return (
-     <ContextStore.Provider value={{data:data,setdata:setdata,sok:sok,setsok:setsok,orders:testdata,emitms1:emitms1}}>
+     <ContextStore.Provider value={{data:data,setdata:setdata,sok:sok,setsok:setsok,orders:testdata,setorders:setTestdata,emitms1:emitms1}}>
     
  {props.children}
         
