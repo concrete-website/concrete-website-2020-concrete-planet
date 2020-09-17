@@ -122,7 +122,7 @@ const sortTypeOrder=()=>{
                 const  ordersForDisplay=[]
                 if(arrOfTypeOrder){
       
-            console.log( arrOfTypeOrder);
+            // console.log( arrOfTypeOrder);
             const forAlldate=[]
             var sum=0
         for (var i = 0; i < arrOfTypeOrder.length; i++) {
@@ -143,11 +143,11 @@ const sortTypeOrder=()=>{
                
                     }
                    
-                    console.log('etch item');
+                    // console.log('etch item');
                  
                     if(eachitem.length!=0){
                 
-                        console.log('the counter is: '+counter); 
+                        // console.log('the counter is: '+counter); 
                         
                         
     
@@ -163,7 +163,7 @@ const sortTypeOrder=()=>{
                                 
                                 let ind=  forAlldate[index1].arrofobj.findIndex(({_id}) =>  _id ==eachitem[index2]._id)
                               
-                                console.log(ind); 
+                                // console.log(ind); 
                                 if(ind==-1){ignore=true} 
                                 else{ignore=false}
                             }
@@ -229,7 +229,7 @@ const sortTypeOrder=()=>{
     if(eachcient){
     const alldata=  eachcient.map((arrname,i)=>{
                 
-         return (   <div style={{}}>
+         return (   <div key={i} style={{}}>
                      
                      <table style={{direction:'rtl'}}  className='table table-bordered'>
                                           <thead >
@@ -255,12 +255,12 @@ const sortTypeOrder=()=>{
              else{color='#28a745'}
              const returntd=()=>{
              if (item.sumcup) {
-                     return <td style={{backgroundColor:'#ffc107',fontSize:'25px'}} > סה"כ: {item.sumcup}</td>
-                    }else{return    <td style={{backgroundColor:color}} >{item.cupAmount}</td> 
+                     return <td key={i} style={{backgroundColor:'#ffc107',fontSize:'25px'}} > סה"כ: {item.sumcup}</td>
+                    }else{return    <td key={i} style={{backgroundColor:color}} >{item.cupAmount}</td> 
                       }
                  }
                
-             return  (<tr style={{}}>
+             return  (<tr key={i} style={{}}>
                  
         {  <td style={{backgroundColor:color}} >{!item.sumcup ? convertDatecreate(item.createdAt):'' }</td>}
                  <td style={{backgroundColor:color}} >{!item.sumcup ? convertDate(item.updatedAt,item.finishOrder):'' }</td>
