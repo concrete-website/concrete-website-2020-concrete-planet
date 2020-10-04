@@ -122,15 +122,24 @@ const sortTypeOrder=()=>{
                 const  ordersForDisplay=[]
                 if(arrOfTypeOrder){
       
+if(arrOfTypeOrder.length>=sortnameclient.length)
+{var lengthOfThebiger=arrOfTypeOrder.length}else{
+    lengthOfThebiger=sortnameclient.length
+}
+
             // console.log( arrOfTypeOrder);
             const forAlldate=[]
             var sum=0
-        for (var i = 0; i < arrOfTypeOrder.length; i++) {
+        // for (let i = 0; i < arrOfTypeOrder.length; i++) {
+            for (let i = 0; i < lengthOfThebiger; i++) {
             sum=0
-                if( i<sortnameclient.length){
-                    var limit=i
-                 
-                    forAlldate.push({orderName:sortnameclient[limit][0].orderName,arrofobj:[]})
+            // console.log(sortnameclient);
+            if( i<sortnameclient.length){
+                var limit=i
+                
+                forAlldate.push({orderName:sortnameclient[limit][0].orderName,arrofobj:[]})
+                // console.log(arrOfTypeOrder);
+                    // console.log(forAlldate);
                 }
                 for (let n = 0; n < arrOfTypeOrder.length; n++) {
                     var counter=0
@@ -162,7 +171,7 @@ const sortTypeOrder=()=>{
                             for (let index2 = 0; index2 < eachitem.length; index2++) {
                                 
                                 let ind=  forAlldate[index1].arrofobj.findIndex(({_id}) =>  _id ==eachitem[index2]._id)
-                              
+                            //   console.log(forAlldate);
                                 // console.log(ind); 
                                 if(ind==-1){ignore=true} 
                                 else{ignore=false}
@@ -227,6 +236,7 @@ const sortTypeOrder=()=>{
                                         // ordersForDisplay
    function mapoverall(){
     if(eachcient){
+        // console.log(eachcient);
     const alldata=  eachcient.map((arrname,i)=>{
                 
          return (   <div key={i} style={{}}>
@@ -317,11 +327,13 @@ const expo=()=>{
 return (
         <div>
             <Heder/>
+            <div className='container'>
             {/* <button onClick={() =>{ setflag(!flag)}}>Refresh</button> */}
               <button className='btn btn-primary m-3' onClick={() => {sortTypeOrder()}}>הצג הכל</button>
               {/* <button className='btn btn-primary' onClick={() => { expo()}}>Excel</button> */}
               {
               mapoverall()}
+              </div>
         </div>
     )
 }
